@@ -1,0 +1,45 @@
+Set up is like a mix of Google Classroom and Google Meet, where upon logging in, user has list of classes available to join a meeting. A class always has a same meeting ID to join.
+UI like Classroom after logging in, with Skeuomorphic icons to join a meet for a student. If the user is a teacher, then there is an option to create or join the meet.
+
+
+
+Problem Statement: Develop an Interactive Design Layout / Scheme for the 
+assigned application domain (sent via mail) covering various aspects 
+covered till Mid-sem of the course that enhance the usability of the 
+product. Factors such as 
+Shneiderman Design principles, 
+`Consistency - in buttons and icons
+`Shortcuts - supports shortcuts
+`Informative Feedback - PopUps and Dialogs
+`Dialogs to yield closure - 
+`easy reversal of actions - Ctrl + Q
+`Error Prevention - Ask the user twice before joining or leaving the meeting
+`Internal Locus of Control - doesn't go anywhere to the out of webpage.
+`Reduce Short term memory load - Display only 4 classes per screen, scroll enabled.
+
+Nielsen’s guidelines, 
+Classical Design Laws such as Vital Few, 
+Law of Learning, 
+Mental Models, 
+Closure, 
+Learnability, 
+Flexibility, 
+Robustness, 
+Primality, 
+Recency, 
+Serial Position Effect, 
+Inverted Pyramid, 
+Asimov’s Laws, 
+etc.... 
+This is only an illustrative list and you may exploit the concepts covered 
+thus far to the product of assigned in an apt manner. (All concepts covered 
+in the course so far..) 
+You may depict your design as wireframes etc. 
+And in a development platform of your choice. 
+As explained in the class, generate a pdf of the overall work with screen shots and relevant explanations of HCI concepts w.r.t feature design and HCI / usability guidelines etc. 
+With respect to the assigned application domain, cover basic features that would follow the 80-20 rule of HCI! 
+You may add new features that would increase the usability of the product such as help systems or other aspects as a HCI Designer. 
+When you submit the final report as a PDF let it be a as one overall PDF. 
+The pdf / report should clearly highlight the HCI concept being considered, 
+apt screen shots and major points that justify the HCI concept related to the specific feature of the product. 
+Upload one overall pdf to the class room link
