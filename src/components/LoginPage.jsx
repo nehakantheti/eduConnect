@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
+import PuzzleCaptcha from './PuzzleCaptcha';
 
 export default function LoginPage() {
   const [role, setRole] = useState('student');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isCaptchaVisible, setIsCaptchaVisible] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -16,7 +18,16 @@ export default function LoginPage() {
       alert('Please fill in all required fields.');
       return;
     }
-    navigate('/dashboard', { state: { role } });
+    setIsCaptchaVisible(true);
+    // navigate('/dashboard', { state: { role } });
+  };
+
+  const handleCaptchaSuccess = () => {
+    navigate('/dashboard'); // Redirect to dashboard upon solving the puzzle
+  };
+
+  const handleCaptchaCancel = () => {
+    setIsCaptchaVisible(false); // Hide captcha overlay on cancel
   };
 
   return (
@@ -24,9 +35,6 @@ export default function LoginPage() {
       {/* Left Panel */}
       <div className="w-1/2 bg-blue-100 flex flex-col items-center justify-center p-8">
         {/* Placeholder Logo */}
-        {/* <div className="text-6xl font-bold text-blue-800 mb-4 tracking-wider">
-          E
-        </div> */}
         <img
             src="/logo.jpeg"
             alt="EduConnect Logo"
@@ -107,6 +115,16 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
+
+      {/* Render Puzzle Overlay */}
+      {isCaptchaVisible && (
+        <PuzzleCaptcha 
+          imageUrl="/captcha.png" // Provide the path to the image
+          onSuccess={handleCaptchaSuccess} 
+          onCancel={handleCaptchaCancel} 
+        />
+      )}
+
     </div>
   );
 }

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaMicrophone, FaMicrophoneSlash, FaVideo, FaVideoSlash, FaDoorOpen, FaUsers } from 'react-icons/fa';
+import MeetingSkeleton from './MeetingSkeleton';
 
 export default function MeetingRoom() {
   const { classId } = useParams();
@@ -8,11 +9,22 @@ export default function MeetingRoom() {
 
   const [micOn, setMicOn] = useState(true);
   const [camOn, setCamOn] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleLeave = () => {
     const confirmLeave = window.confirm('Are you sure you want to leave the meeting?');
     if (confirmLeave) navigate('/dashboard');
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 4000); // 4 seconds
+  
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) return <MeetingSkeleton />;
 
   return (
     <div className="flex flex-col h-screen bg-gray-900 text-white">
@@ -23,12 +35,29 @@ export default function MeetingRoom() {
       </div>
 
       {/* Main Video Area */}
-      <div className="flex-grow flex items-center justify-center bg-black relative">
-        {/* Simulated video feed */}
-        <div className="w-[60%] h-[60%] bg-gray-700 rounded-lg flex items-center justify-center text-2xl text-gray-300">
+  <div className="flex-grow flex items-center justify-center bg-black relative px-4 py-6">
+    <div className="flex w-full max-w-7xl gap-4">
+      {/* Main Video */}
+      <div className="flex-1 flex items-center justify-center">
+        <div className="w-full aspect-video bg-gray-700 rounded-lg flex items-center justify-center text-2xl text-gray-300">
           [ Video Feed ]
         </div>
-      </div>
+    </div>
+
+    {/* Right Side Participant Videos */}
+    <div className="flex flex-col gap-4 w-48">
+      {[1, 2, 3, 4].map((id) => (
+        <div
+          key={id}
+          className="w-full h-35 bg-gray-700 rounded-md flex items-center justify-center text-sm text-gray-300"
+        >
+          Participant {id}
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
 
       {/* Bottom Controls */}
       <div className="p-4 bg-gray-800 flex justify-center gap-6">

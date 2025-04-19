@@ -1,0 +1,43 @@
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .loading-bar {
+    width: 100px;
+    height: 4px;
+    background: #ddd;
+    overflow: hidden;
+    position: relative;
+    border-radius: 2px;
+  }
+  
+  .loading-bar::before {
+    content: '';
+    position: absolute;
+    left: -50%;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    background: #007aff;
+    animation: loadingLoop 1s linear infinite;
+    border-radius: 2px;
+  }
+  
+  @keyframes loadingLoop {
+    0% {
+      left: -50%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+  

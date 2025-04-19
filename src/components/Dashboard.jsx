@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import ProfileMenu from './ProfileMenu';
 import { FaUsers, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
+import BookStackLoader from './BookstackLoader';
+import LoadingScreen from './LoadingScreen';
+import HelpButton from './HelpButton';
+import TermsAndConditions from './TermsAndConditionsPage';
 
 const classes = [
   { id: 1, name: 'Math', lecturer: 'Mr. Sharma' },
@@ -14,9 +18,11 @@ const classes = [
 ];
 
 export default function Dashboard() {
+  const [loaded, setLoaded] = useState(false);
   const { state } = useLocation();
   const role = state?.role || 'student';
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleJoin = (classId) => {
     if (window.confirm('Are you sure you want to join the meeting?')) {
@@ -30,21 +36,43 @@ export default function Dashboard() {
     }
   };
 
+
+  useEffect(() => {
+    // Simulate loading, or use actual data fetching logic here
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // 2 second fake delay
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
   return (
-    <div className="flex bg-gray-100 min-h-screen">
+    <>
+    {!loaded ? (
+        <BookStackLoader onComplete={() => setLoaded(true)} />
+      ) : (
+        <div className="p-4">
+          <div className="flex bg-gray-100 min-h-screen">
       {/* Fixed Sidebar */}
       <div className="w-[20%] h-screen fixed top-0 left-0 bg-blue-200 shadow-md flex flex-col justify-center items-center text-center p-4 z-10">
         <Link to="/" className="flex flex-col items-center">
           <img
             src="/logo.jpeg"
             alt="EduConnect Logo"
-            className="w-24 h-24 rounded-lg transform -rotate-3 mb-2 cursor-pointer"
+            className="w-24 h-24 rounded-lg transform rotate-[-6deg] mb-2 cursor-pointer"
           />
         </Link>
         <h1 className="text-2xl font-bold text-blue-700">EduConnect</h1>
         <p className="text-sm text-gray-600 mt-2 mb-4">
           A seamless blend of Google Classroom and Google Meet.
         </p>
+        <div>
+          <HelpButton />
+        </div>
       </div>
 
       {/* Main Content */}
@@ -85,7 +113,7 @@ export default function Dashboard() {
           {classes.map((cls) => (
             <div
               key={cls.id}
-              className="bg-white shadow p-6 rounded-lg flex justify-between items-center min-h-[130px]"
+              className="bg-white shadow hover:shadow-lg hover:scale-[1.01] transition-transform duration-300 p-6 rounded-lg flex justify-between items-center min-h-[120px] cursor-pointer"
             >
               <div>
                 <h3 className="text-xl font-semibold">{cls.name}</h3>
@@ -123,5 +151,12 @@ export default function Dashboard() {
         </div>
       </div>
     </div>
+          {/* <h1 className="text-2xl font-bold">Welcome to EduConnect 🎓</h1> */}
+        </div>
+      )}
+
+
+    
+    </>
   );
 }

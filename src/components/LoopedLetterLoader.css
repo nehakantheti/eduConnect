@@ -1,0 +1,98 @@
+.letter-loader-container {
+    width: 60px;
+    height: 80px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Bar base style */
+  .bar {
+    position: absolute;
+    height: 4px;
+    background-color: #007aff;
+    animation: slideBar 1.2s linear infinite;
+    border-radius: 2px;
+  }
+  
+  /* F or E shaped layout */
+  .letter-F .top {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  .letter-F .middle {
+    top: 35%;
+    left: 0;
+    width: 70%;
+  }
+  
+  .letter-F .bottom {
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    animation: slideVertical 1.2s linear infinite;
+  }
+  
+  .letter-E .top {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  .letter-E .middle {
+    top: 35%;
+    left: 0;
+    width: 100%;
+  }
+  
+  .letter-E .bottom {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  .letter-E .extra {
+    position: absolute;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #007aff;
+    animation: slideVertical 1.2s linear infinite;
+    border-radius: 2px;
+  }
+  
+  /* Horizontal animation */
+  @keyframes slideBar {
+    0% {
+      opacity: 0.2;
+      transform: translateX(-50%);
+    }
+    50% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+    100% {
+      opacity: 0.2;
+      transform: translateX(50%);
+    }
+  }
+  
+  /* Vertical animation */
+  @keyframes slideVertical {
+    0% {
+      opacity: 0.2;
+      transform: translateY(-20%);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+    100% {
+      opacity: 0.2;
+      transform: translateY(20%);
+    }
+  }  
